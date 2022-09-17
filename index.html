@@ -6,11 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="api.js"></script>
     <script defer src="index.js"></script>
 </head>
 <body>
     <h1>Movie App</h1>
-    <h2>Wisdom Wright</h2>
+    <header>
+        <form id="form">Get Movies
+          <input type="text" id="search" class="search" placeholder="Search for a movie...">
+          <button type="submit" id="submit" >Action</button>     
+        </form>
+      </header>
+        <button onclick="myFunction()">Switch mode</button>
+
+      <div id="movie"></div>
+      <div id="movie-container"></div>
+     
+<footer>
+   Learn More About <a href="aboutme.html">Wisdom Wright</a>
+</footer>
 
 </body>
 </html>
