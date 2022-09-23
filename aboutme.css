@@ -27,8 +27,12 @@ h1 {
     text-align: center;
 }
 
-@media screen and (max-height: 450px) {
+@media screen and (max-width: 1100px) {
     body {
         width: 60%;
+        background-color: rgb(236, 232, 232);
+    }
+    h1 {
+        color: rgb(44, 152, 210);
     }
   }

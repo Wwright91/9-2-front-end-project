@@ -74,7 +74,6 @@ function movieSection(movies) {
       movieDivSection.append(img, title, overview);
       title.innerHTML = `${movie.title}`;
       section.appendChild(movieDivSection);
-      // section.appendChild(text);
     }
   });
   return section;
@@ -124,8 +123,7 @@ document.addEventListener("click", (event) => {
   }
   if (target.id === "content-close") {
     const content = target.parentElement;
-    content.innerHTML = "";
-    // content.classList.remove("content-display");
+    content.innerHTML = "";;
   }
 });
 
@@ -134,234 +132,15 @@ function myFunction() {
   element.classList.toggle("dark");
 }
 
-// const movieGenres = "https://api.themoviedb.org/3/discover/movie?api_key=3a337c800deff9c4dfc6346a018279a7&with_genres=28"
 
-function actionMovies() {
-  const userSearch =
-    "https://api.themoviedb.org/3/discover/movie?api_key=3a337c800deff9c4dfc6346a018279a7&with_genres=28";
-  const render = renderMovies.bind({ title: "Action" });
-  requestMovies(userSearch, render, handleError);
-}
 
-// const dropList = document.querySelector("#dropList")
-
-// dropList.addEventListener("submit", (event) => {
-//   event.preventDefault()
-//   const dropdownList = document.querySelector(".dropdownList")
-//   console.log("drop", dropdownList.value)
-//   if (dropdownList.value === "action") {
-//   document.querySelector("#movie-container").style.display = "none";
-//     // movieContainer.style.display("none")
-//     const userSearch = "https://api.themoviedb.org/3/discover/movie?api_key=3a337c800deff9c4dfc6346a018279a7&with_genres=28";
+// function actionMovies() {
+//   const userSearch =
+//     "https://api.themoviedb.org/3/discover/movie?api_key=3a337c800deff9c4dfc6346a018279a7&with_genres=28";
 //   const render = renderMovies.bind({ title: "Action" });
-//  requestMovies(userSearch, render, handleError);
-
-//   //     const genres = document.getElementById("genre")
-//   // genres.append(newGenre)
-//   }
-
-// })
-
-// const genreNameObj = {}
-// let genreObj = {}
-
-// const genresList = "https://api.themoviedb.org/3/genre/movie/list?api_key=3a337c800deff9c4dfc6346a018279a7"
-// console.log(genresList)
-
-// fetch(genresList)
-//   .then((res) => res.json())
-//   .then((genres) => {
-//    genreObj = genres
-// console.log("genres", genreObj)
-//   // const allGenres = genres.map(g => g.name)
-//   // console.log("genreobj", allGenres)
-
-//     for (let g in genreObj) {
-//       genreNameObj[g.name] = genreNameObj[g.name] + 1 || 1
-//     }
-//     console.log(genreNameObj)
-
-// for (let genre in genreObj) {
-//   console.log("genre", genre)
-//   // const genreNames = genres.name
-//   const dropdownList = document.querySelector("#dropdown")
-//   const allGenres = document.createElement("option")
-
-//   allGenres.setAttribute("value", genre)
-//   allGenres.textContent = genre
-//   console.log("allgenres", allGenres)
-//   dropdownList.append(allGenres)
-
+//   requestMovies(userSearch, render, handleError);
 // }
-// })
-// .catch(err => {
-//   console.log(err)
-// })
 
-const genresList =
-  "https://api.themoviedb.org/3/genre/movie/list?api_key=3a337c800deff9c4dfc6346a018279a7";
-// console.log(genresList);
-const movieIdMatch =
-  "https://api.themoviedb.org/3/discover/movie?api_key=3a337c800deff9c4dfc6346a018279a7&with_genres=";
-
-// const form = document.querySelector("#dropList");
-// console.log(form)
-
-/**fetch genres and grab all ids, connect the ids with the id for the genres */
-
-fetch(genresList)
-  .then((res) => res.json())
-  .then((movieGenres) => {
-    console.log(movieGenres.genres);
-    const dropdownList = document.querySelector(".dropdownList");
-
-    for (let i = 0; i < movieGenres.genres.length; i++) {
-      const movieNames = movieGenres.genres[i].name;
-      const movieIdTag = movieGenres.genres[i].id;
-
-      const option = document.createElement("option");
-      option.setAttribute("value", movieIdTag);
-      option.innerText = movieNames;
-      dropdownList.append(option);
-    }
-
-    dropdownList.addEventListener("change", (event) => {
-      console.log(event.target.value);
-      fetch(movieIdMatch + event.target.value)
-        .then((res) => res.json())
-        .then(
-          (movieGenres) => {
-            console.log(movieGenres.results);
-
-            // for (let i = 0; i < movieGenres.results.length; i++) {
-            //   const videoIds = movieGenres.results[i].id;
-            //   console.log(videoIds);
-
-            //   fetch(
-            //     `https://api.themoviedb.org/3/movie/${videoIds}/videos?api_key=3a337c800deff9c4dfc6346a018279a7`
-            //   )
-            //     .then((res) => res.json())
-            //     .then((genreVideo) => {
-            //       console.log(genreVideo.results);
-
-            for (let i = 0; i < movieGenres.results.length; i++) {
-              // const movieKey = movieGenres.results[i].key;
-              // console.log(movieKey);
-
-              const userSearch =
-                `https://api.themoviedb.org/3/discover/movie?api_key=3a337c800deff9c4dfc6346a018279a7&with_genres=${movieIdTag}`;
-              const render = renderMovies.bind({ title: movieGenres.results[i].title });
-              requestMovies(userSearch, render, handleError);
-
-
-
-
-              // const videoFrame = document.createElement("iframe");
-              // videoFrame.src =
-              //   "https://www.youtube.com/embed/${movieKey}"
-              // ;
-              // videoFrame.width = 360;
-              // videoFrame.height = 315;
-              // videoFrame.allowFullscreen = true
-              // const videoDiv = document.createElement("div");
-              // videoDiv.append(videoFrame);
-              // movieContainer.innerHTML = "";
-              // movieContainer.append(videoDiv);
-            }
-          });
-    
-  }
-)}
-
-          // iframe.src = `https://www.youtube.com/embed/${video.key}`;
-          // iframe.width = 360;
-          // iframe.height = 315;
-          // iframe.allowFullscreen = true;
-
-          // createIframe(videoIds)
-
-          //grab movie ids then fetch https://api.themoviedb.org/3/movie/579974/videos?api_key=3a337c800deff9c4dfc6346a018279a7
-        )
-
-        .catch((err) => console.log(err));
-    // });
-  // });
-
-// "
-// "id": 28,
-// "name": "Action"
-// },
-// {
-// "id": 12,
-// "name": "Adventure"
-// },
-// {
-// "id": 16,
-// "name": "Animation"
-// },
-// {
-// "id": 35,
-// "name": "Comedy"
-// },
-// {
-// "id": 80,
-// "name": "Crime"
-// },
-// {
-// "id": 99,
-// "name": "Documentary"
-// },
-// {
-// "id": 18,
-// "name": "Drama"
-// },
-// {
-// "id": 10751,
-// "name": "Family"
-// },
-// {
-// "id": 14,
-// "name": "Fantasy"
-// },
-// {
-// "id": 36,
-// "name": "History"
-// },
-// {
-// "id": 27,
-// "name": "Horror"
-// },
-// {
-// "id": 10402,
-// "name": "Music"
-// },
-// {
-// "id": 9648,
-// "name": "Mystery"
-// },
-// {
-// "id": 10749,
-// "name": "Romance"
-// },
-// {
-// "id": 878,
-// "name": "Science Fiction"
-// },
-// {
-// "id": 10770,
-// "name": "TV Movie"
-// },
-// {
-// "id": 53,
-// "name": "Thriller"
-// },
-// {
-// "id": 10752,
-// "name": "War"
-// },
-// {
-// "id": 37,
-// "name": "Western""
 
 upcomingMovies();
 topRatedMovies();
